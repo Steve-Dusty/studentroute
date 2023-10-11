@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
-from .models import Profile
-from .serializers import ProfileSerializer
+from .models import *
+from .serializers import *
 
 urlpatterns = [
     path("profiles", views.ProfileList.as_view()),
@@ -9,5 +9,7 @@ urlpatterns = [
     path("users", views.UserList.as_view()),
     path("users/<int:pk>/", views.UserDetail.as_view()),
     path('login/', views.UserLoginView.as_view(), name='user-login'),
-
+    path('dashboard/', views.PostList.as_view()),
+    path('dashboard/<int:pk>/', views.PostDetail.as_view())
+    
 ]

@@ -14,7 +14,7 @@ User = get_user_model()
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAdminUser]
+    # permission_classes = [IsAdminUser]
 
 class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
@@ -23,7 +23,7 @@ class UserDetail(generics.RetrieveAPIView):
 class ProfileList(generics.ListCreateAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
-    permission_classes = [IsAdminUser]
+    #permission_classes = [IsAdminUser]
 
     def list(self, request):
         # Note the use of `get_queryset()` instead of `self.queryset`
@@ -53,3 +53,12 @@ class UserLoginView(APIView):
             else:
                 return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class PostList(generics.ListCreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+class PostDetail(generics.RetrieveAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    
