@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework import permissions, generics
-from rest_framework.permissions import IsAdminUser, AllowAny
+from rest_framework.permissions import IsAdminUser, AllowAny, IsAuthenticated
 from .serializers import *
 from django.contrib.auth import get_user_model, authenticate, login
 
