@@ -13,16 +13,6 @@ class ProfileSerializer(serializers.ModelSerializer):
 # serializes the raw abstract user
 class UserSerializer(serializers.ModelSerializer):
 
-    profile = ProfileSerializer()
-
-    def create(self, validated_data):
-        profile = validated_data.pop("profile")
-        return User.objects.create(
-            profile = Profile.objects.create(**profile),
-            **validated_data,
-        )
-
-
     class Meta:
         model = User
         fields = '__all__'
