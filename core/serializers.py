@@ -31,3 +31,8 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = '__all__'
+
+class PairSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Pair
+        fields = '__all__'

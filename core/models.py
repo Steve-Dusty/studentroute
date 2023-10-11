@@ -7,6 +7,9 @@ class Profile(models.Model):
     address = models.TextField()
     is_driver = models.BooleanField()
 
+    def __str__(self):
+        return self.user.email
+
 class Post(models.Model):
     frequency = models.CharField(max_length=255)
     time = models.TimeField()

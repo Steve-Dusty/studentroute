@@ -55,10 +55,21 @@ class UserLoginView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PostList(generics.ListCreateAPIView):
+    
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
 class PostDetail(generics.RetrieveAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    
+
+# add to pair during on click, do model checking 
+# to remove things from PostList
+
+class PairList(generics.ListCreateAPIView):
+    queryset = Pair.objects.all()
+    serializer_class = PairSerializer
+
+class PairDetail(generics.RetrieveAPIView):
+    queryset = Pair.objects.all()
+    serializer_class = PairSerializer
