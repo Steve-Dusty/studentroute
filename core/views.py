@@ -55,9 +55,15 @@ class UserLoginView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PostList(generics.ListCreateAPIView):
-    
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+    def perform_create(self, serializer):
+        #post_instance = self.get_object()
+        #associated_post = post_instance.rider
+        print("post_instance")
+        #if associated_post:
+        #    associated_post.delete()
 
 class PostDetail(generics.RetrieveAPIView):
     queryset = Post.objects.all()
@@ -68,6 +74,7 @@ class DriverList(generics.ListCreateAPIView):
     queryset = Driver.objects.all()
     serializer_class = DriverSerializer
 
+
 class DriverDetail(generics.RetrieveAPIView):
     queryset = Driver.objects.all()
     serializer_class = DriverSerializer
@@ -76,6 +83,13 @@ class RiderList(generics.ListCreateAPIView):
     queryset = Rider.objects.all()
     serializer_class = RiderSerializer
 
-class RiderDetail(generics.RetrieveAPIView):
+class RiderDetail(generics.RetrieveUpdateAPIView):
     queryset = Rider.objects.all()
     serializer_class = RiderSerializer
+    # does not work, related object does not exist
+    def perform_update(self, serializer):
+        rider_instance = self.get_object()
+        associated_post = rider_instance.post
+        if associated_post:
+            associated_post.delete()
+

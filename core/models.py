@@ -11,13 +11,14 @@ class Profile(models.Model):
 
 class Driver(models.Model):
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
-    
+    approved = models.BooleanField(default=False)
+
     def __str__(self):
         return self.profile.user.email
 
 class Rider(models.Model):
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
-    driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
+    driver = models.ForeignKey(Driver, on_delete=models.CASCADE, null=True, blank=True, default=False)
 
     def __str__(self):
         return self.profile.user.email
@@ -27,7 +28,7 @@ class Post(models.Model):
     time = models.TimeField()
     date = models.DateField()
     additional_info = models.TextField()
-    rider = models.ForeignKey(Rider, on_delete=models.CASCADE)
+    rider = models.OneToOneField(Rider, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
