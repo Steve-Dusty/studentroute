@@ -1,4 +1,4 @@
-from .models import Profile, Post, Pair
+from .models import Profile, Post
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -63,13 +63,19 @@ class PostDetail(generics.RetrieveAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
-# add to pair during on click, do model checking 
-# to remove things from PostList
 
-class PairList(generics.ListCreateAPIView):
-    queryset = Pair.objects.all()
-    serializer_class = PairSerializer
+class DriverList(generics.ListCreateAPIView):
+    queryset = Driver.objects.all()
+    serializer_class = DriverSerializer
 
-class PairDetail(generics.RetrieveAPIView):
-    queryset = Pair.objects.all()
-    serializer_class = PairSerializer
+class DriverDetail(generics.RetrieveAPIView):
+    queryset = Driver.objects.all()
+    serializer_class = DriverSerializer
+
+class RiderList(generics.ListCreateAPIView):
+    queryset = Rider.objects.all()
+    serializer_class = RiderSerializer
+
+class RiderDetail(generics.RetrieveAPIView):
+    queryset = Rider.objects.all()
+    serializer_class = RiderSerializer

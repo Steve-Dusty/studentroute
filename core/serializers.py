@@ -32,7 +32,13 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
         fields = '__all__'
 
-class PairSerializer(serializers.ModelSerializer):
+
+class RiderSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Pair
+        model = Rider
+        fields = '__all__'
+
+class DriverSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Driver
         fields = '__all__'
