@@ -57,11 +57,11 @@ class UserLoginView(APIView):
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-
-    def perform_create(self, serializer):
+     # fix perform create
+    #def perform_create(self, serializer):
         #post_instance = self.get_object()
         #associated_post = post_instance.rider
-        print("post_instance")
+    #    print("post_instance")
         #if associated_post:
         #    associated_post.delete()
 
@@ -86,11 +86,10 @@ class RiderList(generics.ListCreateAPIView):
 class RiderDetail(generics.RetrieveUpdateAPIView):
     queryset = Rider.objects.all()
     serializer_class = RiderSerializer
-    # does not work with POST keeps deleting itself.
+
     def perform_update(self, serializer):
         rider_instance = self.get_object()
         associated_post = Post.objects.get(rider=rider_instance)
-        print(associated_post)
         if associated_post:
             associated_post.delete()
 
