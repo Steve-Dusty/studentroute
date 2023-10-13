@@ -14,6 +14,9 @@ User = get_user_model()
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    def perform_create(self, serializer):
+        user = serializer.save(is_active=True)
     # permission_classes = [IsAdminUser]
  
 class UserDetail(generics.RetrieveAPIView):
@@ -44,6 +47,7 @@ class UserLoginView(APIView):
         if serializer.is_valid():
             email = serializer.validated_data['email']
             password = serializer.validated_data['password']
+            print(email, password)
             user = authenticate(email=email, password=password)
  
             if user is not None:
