@@ -30,6 +30,7 @@ class Post(models.Model):
     additional_info = models.TextField()
     rider = models.OneToOneField(Rider, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+    archived = models.BooleanField(default=False)
 
     def __str__(self):
         return self.rider.profile.user.email

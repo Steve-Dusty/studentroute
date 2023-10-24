@@ -107,11 +107,9 @@ class RiderDetail(generics.RetrieveUpdateAPIView):
     serializer_class = RiderSerializer
     
     # ERROR HERE. [MAYBE] ASSOCIATED POST WHEN DELETED ALSO DELETES RIDER
-    """ 
     def perform_update(self, serializer):
         rider_instance = self.get_object()
         associated_post = Post.objects.get(rider=rider_instance)
-        if associated_post:
-            associated_post.delete()
-
-    """
+        associated_post.archived = True
+        associated_post.save()
+        super().perform_update(serializer)
